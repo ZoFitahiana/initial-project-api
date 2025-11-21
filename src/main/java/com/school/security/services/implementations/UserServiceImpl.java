@@ -4,7 +4,6 @@ import com.school.security.dtos.requests.UserReqDto;
 import com.school.security.dtos.responses.UserResDto;
 import com.school.security.entities.Role;
 import com.school.security.entities.User;
-import com.school.security.enums.Gender;
 import com.school.security.enums.RoleType;
 import com.school.security.exceptions.EntityException;
 import com.school.security.mappers.UserMapper;
@@ -28,7 +27,6 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
     private UserRepository userRepository;
 
-
     @Override
     public UserResDto createOrUpdate(UserReqDto toSave) {
         Optional<User> userOptional = userRepository.findByEmail(toSave.email());
@@ -44,10 +42,10 @@ public class UserServiceImpl implements UserService {
                 user.setPwd(passwordEncoder.encode(toSave.password()));
             }
             var userToSave = userRepository.save(user);
-                userRepository.findAll().stream()
-                            .filter(users -> users.getRoles().isEmpty())
-                            .map(userMapper::toDto)
-                            .collect(Collectors.toList());
+            userRepository.findAll().stream()
+                    .filter(users -> users.getRoles().isEmpty())
+                    .map(userMapper::toDto)
+                    .collect(Collectors.toList());
             return userMapper.toDto(userToSave);
 
         } else {
@@ -58,9 +56,9 @@ public class UserServiceImpl implements UserService {
             }
             var userToSave = userRepository.save(user);
             userRepository.findAll().stream()
-                            .filter(users -> users.getRoles().isEmpty())
-                            .map(userMapper::toDto)
-                            .collect(Collectors.toList());
+                    .filter(users -> users.getRoles().isEmpty())
+                    .map(userMapper::toDto)
+                    .collect(Collectors.toList());
             return userMapper.toDto(userToSave);
         }
     }

@@ -4,7 +4,6 @@ import com.school.security.dtos.requests.AttachRoleReqDto;
 import com.school.security.dtos.requests.PwdReqDto;
 import com.school.security.dtos.responses.UserResDto;
 import com.school.security.services.contracts.UserService;
-
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -68,6 +67,4 @@ public class UserController {
     public Long getInvitationCount() {
         return this.userService.getAccountNoRole();
     }
-
-
 }
